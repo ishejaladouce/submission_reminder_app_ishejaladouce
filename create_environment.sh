@@ -1,56 +1,27 @@
 #!/bin/bash
 
-#Prompt the user to enter their name and create  a directory named submission_reminder_<User-inputed-name>
+#Prompt the user to enter their name and save their name in myName variable.
 read -p "Please input your name: " myName
+
+#create our main directory & subdirectories
 mainDir="submission_reminder_${myName}"
+mkdir -p "$mainDir"/{app,modules,assets,config}
 
-#create subdirectories in the main directory (submission_reminder_${myName})
-mkdir -p "mainDir/app"
-mkdir -p "mainDir/modules"
-mkdir -p "mainDir/assets"
-mkdir -p "mainDir/config"
+#create files in the corresponding directories
+touch "$mainDir"/app/reminder.sh
+touch "$mainDir"/modules/functions.sh
+touch "$mainDir"/assets/submissions.txt
+touch "$mainDir"/config/config.env
+touch "$mainDir"/startup.sh
 
-#create and populate our config.env
-cat <<EOF > "mainDir/config/config.env"
-#App configuration
-ASSIGNMENT=Assignment 1
-EOF
-
-#create and populate our reminder.sh
-cat <<EOF > "$mainDir/app/reminder.sh"
-#!/bin/bash
-source ../config/config.env
-source ../modules/functions.sh
-echo "Just checking on who's missing submissions\$ASSIGNMENT..."
-get_submission_status ../assets/submissions.txt \$ASSIGNMENT
-EOF
-
-# Create and populate our functions.sh
-cat <<EOF > "$mainDir/modules/functions.sh"
-#!/bin/bash
-get_submission_status() {
-    file="\$1"
-    assignment="\$2"
-    echo ""
-    echo "Who still needs to submit for \$assignment:"
-    grep ",\$assignment,missing" "\$file" | cut -d',' -f1
-}
-EOF
-
-# Create and populate our submissions.txt with at least 5 students
+#Add atleast 5 student records in our submissions.txt
 cat <<EOF > "$mainDir/assets/submissions.txt"
-Teta,Assignment 1,submitted
-Louange,Assignment 1,missing
-Yakin,Assignment 1,missing
-Tunga,Assignment 1,submitted
-Toussaint,Assignment 1,missing
-Robert,Assignment 1,missing
-EOF
-
-# Create and populate our startup.sh
-cat <<EOF > "$mainDir/assets/startup.sh"
-#!/bin/bash
-bash ../app/reminder.sh
+Teta,shell basics,submitted
+Louange,shell scripting,sumitted
+Yakin,Emacs,not submitted
+Tunga,Git,submitted
+Toussaint,loops & conditions,not submitted
+Robert,shell redirections,not submitted
 EOF
 
 # Give permission and Make all .sh files executable
