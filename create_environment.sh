@@ -3,6 +3,9 @@
 #Prompt the user to enter their name and save their name in myName variable.
 read -p "Please input your name: " myName
 
+#Let's save our username for later use by copilot
+echo "$myName" > .user.tmp
+
 #create our main directory & subdirectories
 mainDir="submission_reminder_${myName}"
 mkdir -p "$mainDir"/{app,modules,assets,config}

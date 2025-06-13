@@ -1,6 +1,0 @@
-Teta,shell basics,submitted
-Louange,shell scripting,sumitted
-Yakin,Emacs,not submitted
-Tunga,Git,submitted
-Toussaint,loops & conditions,not submitted
-Robert,shell redirections,not submitted
