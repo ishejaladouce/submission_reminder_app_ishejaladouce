@@ -30,5 +30,10 @@ EOF
 # Give permission and Make all .sh files executable
 find "$mainDir" -type f -name "*.sh" -exec chmod +x {} \;
 
-echo "🎊🎊"
-echo "🤩🤩 Awesome! your App is all setup in  $mainDir"
+echo " "
+echo "-------------------------------------------------"
+echo " "
+echo "🎊 🎊 🎊 Yay AWESOME!!"
+echo " "
+echo "🤩  $myName your App is all setup in  $mainDir"
+echo " "

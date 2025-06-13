@@ -15,7 +15,13 @@ myName=$(cat .user.tmp)
 setting_file=submission_reminder_$myName/config/config.env
 
 if [ ! -f "$setting_file" ]; then
+  echo " "
+  echo "-----------------ERROR------------------"
+  echo " "
   echo "Oops😥  config.env file not found"
+  echo " "
+  echo "Please first run ./create_environment.sh"
+  echo " "
   exit 1
 fi
 
@@ -28,6 +34,9 @@ if grep -q '^ASSIGNMENT_NAME=' "$setting_file"; then
 else
   echo "ASSIGNMENT_NAME=$assign_name" >> "$setting_file"
 fi
-
+echo " "
+echo "--------------------------------------------"
+echo " "
 echo "Hoolay 🤩 Assignment name has been updated!"
+echo " "
 
