@@ -1,42 +1,20 @@
 #!/bin/bash
-  
-#to get access to our config.env , let's first prompt the user to enter their name
-#echo "Please user input your name: "
-#read myName
 
-#in order not to always prompt the user for their username cz they might have forgot it.
-#let's read the username from .user.tmp (set by create_environment.sh)
-if [ ! -f .user.tmp ]; then
-        echo "Sorry⚠️  Cannot find .user.tmp - please run create_environment.sh first!"    
-        exit 1
-fi
+read -p "Enter your name: " myName
+mainDir="submission_reminder_${myName}"
+configFile="${mainDir}/config/config.env"
 
-myName=$(cat .user.tmp)
-setting_file=submission_reminder_$myName/config/config.env
-
-if [ ! -f "$setting_file" ]; then
-  echo " "
-  echo "-----------------ERROR------------------"
-  echo " "
-  echo "Oops😥  config.env file not found"
-  echo " "
-  echo "Please first run ./create_environment.sh"
-  echo " "
+# Check if config file exists
+if [ ! -f "$configFile" ]; then
+  echo "❌ Can't find config file at: $configFile"
   exit 1
 fi
 
-echo "$myName Please choose a  new assignment name:"
-read assign_name
+# Prompt for new assignment name
+read -p "Enter new assignment name: " new_assignment
 
-# Update/add the ASSIGNMENT_NAME variable
-if grep -q '^ASSIGNMENT_NAME=' "$setting_file"; then
-  sed -i "s/^ASSIGNMENT_NAME=.*/ASSIGNMENT_NAME=$assign_name/" "$setting_file"
-else
-  echo "ASSIGNMENT_NAME=$assign_name" >> "$setting_file"
-fi
-echo " "
-echo "--------------------------------------------"
-echo " "
-echo "Hoolay 🤩 Assignment name has been updated!"
-echo " "
+# Update the ASSIGNMENT line in config.env
+sed -i "s/^ASSIGNMENT=.*/ASSIGNMENT=\"$new_assignment\"/" "$configFile"
+
+echo "✅ Assignment updated to \"$new_assignment\" in $configFile"
 
