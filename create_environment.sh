@@ -1,12 +1,18 @@
 #!/bin/bash
 
+#Prompt the user to enter username and create a directory named submission_reminder_<usr_inputed_name>
+echo ""
 read -p "Please input name: " myName
 
 mainDir="submission_reminder_${myName}"
+
+#create subdirectories in the main directory
 mkdir -p "${mainDir}"
 
 mkdir -p "${mainDir}/app" && mkdir -p "${mainDir}/modules" && mkdir -p "${mainDir}/assets" && mkdir -p "${mainDir}/config" 
 
+
+#create and populate our reminder.sh
 cat > "${mainDir}/app/reminder.sh" << 'EOF'
 #!/bin/bash
 
@@ -25,7 +31,7 @@ echo "--------------------------------------------"
 check_submissions $submissions_file
 EOF
 
-
+#create and populate our functions.sh
 cat > "${mainDir}/modules/functions.sh" << 'EOF'
 #!/bin/bash
 
@@ -49,31 +55,40 @@ function check_submissions {
 }
 EOF
 
-
+#create and Populate our submssions.txt
 cat > "${mainDir}/assets/submissions.txt" << 'EOF'
 student, assignment, submission status
 Chinemerem, Shell Navigation, not submitted
 Chiagoziem, Git, submitted
 Divine, Shell Navigation, not submitted
 Anissa, Shell Basics, submitted
-Chinemerem, Shell Navigation, not submitted
-Chiagoziem, Git, submitted
-Divine, Shell Navigation, not submitted
-Anissa, Shell Basics, submitted
+Robert, Shell Redirections, not submitted
+Alex, Python, not submitted
+Ladouce, Shell Navigation, not submitted
+Annie, Shell Basics, not submitted
+Kevine, React Js, submitted
+Dior, Git, not submitted
+Gerry, Shell Basics, not submitted
 EOF
 
-
+#create and populate our config.env
 cat > "${mainDir}/config/config.env" << 'EOF'
 # This is the config file
 ASSIGNMENT="Shell Navigation"
 DAYS_REMAINING=2
 EOF
 
+#create and populate our startup.sh
 cat > "${mainDir}/startup.sh" << 'EOF'
 #!/bin/bash
 ./app/reminder.sh
 EOF
 
-
-
+#Allow the execute permission to all .sh files
 find "${mainDir}" -type f -name "*.sh" -exec chmod +x {} \;
+
+
+#Tell the user that the app has been setup successfully into the main directory
+echo ""
+echo "Awesome! $myName your App is all setup in $mainDir"
+echo ""
