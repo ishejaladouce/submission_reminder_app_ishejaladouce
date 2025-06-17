@@ -43,8 +43,9 @@ __How to use__
 4. Change/modify the Assignment name
 	./copilot_shell_script.sh
 
-__How it's built
+__How it's built__
 
 - Bash: Writte entirely in Bash shell script.
-- Liux: Relies on how Linux organizes files and handles permisions.
-Git: We used Git to manage all the code and keep track of updates
+- Linux: Relies on how Linux organizes files and handles permisions.
+- Git: We used Git to manage all the code and keep track of updates
+ 
