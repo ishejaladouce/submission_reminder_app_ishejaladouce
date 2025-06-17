@@ -1,6 +1,6 @@
 __STUDENT SUBMISSION REMINDER APP__
 
-This is a simple application built with Linux shell scripts. Its purpose is to quickly identify which students have not yet submitted their assignments, and for automating pre-deadline checks.
+This is a simple application built with Linux shell scripts. Its purpose is to quickly identify which students have not yet submitted their assignments, and to automate pre-deadline checks.
 
 __what it does__
 
@@ -31,11 +31,11 @@ submission_reminder_<yourName>/
 
 __How to use__
 
-1. Run the setup script that create everything
+1. Run the setup script that creates everything
 	./create_environment.sh
 
 2. Move to your new folder
-	cd submiission_reminder_<yourName>
+	cd submission_reminder_<yourName>
 
 3. Run the app to see: the assignment name, how many days remain, and who has not submitted the assignment.
 	./startup.sh
@@ -45,6 +45,6 @@ __How to use__
 
 __How it's built
 
-- Bash: Writte entirely in Bash shell script.
-- Liux: Relies on how Linux organizes files and handles permisions.
+- Bash: Written entirely in Bash shell script.
+- Liux: Relies on how Linux organizes files and handles permissions.
 Git: We used Git to manage all the code and keep track of updates
